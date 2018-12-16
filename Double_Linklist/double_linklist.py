@@ -46,45 +46,57 @@ class double_linklist:
                 cur.next=new_node
 
     def insertDataSpecificationLocation(self,data,location):
+        count=0
         if self.start is None:
             print("Database is Null")
         else:
             cur=self.start
-            if self.start.next is None and location==1:
-                new_node=Node(data)
-                new_node.prev=None
-                new_node.next=self.start
-                self.start.prev=new_node
-                self.start=new_node
+            while cur:
+                cur=cur.next
+                count +=1
+            if location>(count+1):
+                print("Index out of bound")
             else:
-                flag=2
-                while cur.next is not None:
-                    temp=cur
-                    cur=cur.next
-                    if flag==location:
-                        break
-                    flag +=1
-                if cur.next is None:
+                cur=self.start
+                if self.start.next is None and location==1 or location==1:
                     new_node=Node(data)
-                    new_node.prev=cur
-                    new_node.next=None
-                    cur.next=new_node
+                    new_node.prev=None
+                    new_node.next=self.start
+                    self.start.prev=new_node
+                    self.start=new_node
                 else:
-                    new_node=Node(data)
-                    new_node.prev=temp
-                    new_node.next=temp.next
-                    temp.next=new_node
-                    cur.prev=new_node
+                    flag=2
+                    while cur.next is not None:
+                        temp=cur
+                        cur=cur.next
+                        if flag==location:
+                            break
+                        flag +=1
+                    if cur.next is None:
+                        new_node=Node(data)
+                        new_node.prev=cur
+                        new_node.next=None
+                        cur.next=new_node
+                    else:
+                        new_node=Node(data)
+                        new_node.prev=temp
+                        new_node.next=temp.next
+                        temp.next=new_node
+                        cur.prev=new_node
 
 
     def deleteData(self,key):
         if self.start is None:
             print("Database is Null")
         else:
+            cur = self.start
             if self.start.next is None and self.start.data==key:
                 self.start=None
+            elif self.start and self.start.data==key:
+                self.start=cur.next
+                cur.next=None
+                self.start.prev=None
             else:
-                cur=self.start
                 while cur.next is not None and cur.data != key:
                     temp=cur
                     cur=cur.next
@@ -121,6 +133,22 @@ class double_linklist:
                 temp.next=None
                 cur.prev=None
 
+    def searchData(self,key):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            loc=1
+            cur=self.start
+            while cur.next is not None and cur.data != key:
+                loc +=1
+                cur=cur.next
+            if cur.next and cur.data == key:
+                print(cur.data,"was jjjjfound at location 1")
+            elif cur.next is None and cur.data == key:
+                print(cur.data, "was found at location", loc)
+            else:
+                print(cur.data,"was found at location",loc)
+
     def displayData(self):
         cur=self.start
         if self.start is None:
@@ -130,10 +158,53 @@ class double_linklist:
                 print(cur.data,end=" ")
                 cur=cur.next
 d=double_linklist()
-d.insertData(6745423)
 
-d.displayData()
-print()
-d.insertDataSpecificationLocation(77777,1)
-d.displayData()
-print()
+
+while True:
+    print("1) Insert Data", end="           ")
+    print("2) Insert Data at Beg")
+    print("3) Insert Data at End", end="    ")
+    print("4) Insert Data at Specific Location")
+    print("5) Delete Data", end="           ")
+    print("6) Delete Data at Beg")
+    print("7) Delete Data at End", end="    ")
+    print("8) Search Data")
+    print("9) Display Data",end="          ")
+    print("10) Exit")
+    choice=int(input(("\nEnter your choice:")))
+
+    if choice==1:
+        n=int(input("How many data would u like to enter:"))
+        print("Enter data:\n")
+        while n>0:
+            data = int(input())
+            d.insertData(data)
+            n-=1
+    elif choice==2:
+        data=int(input("Enter data:"))
+        d.insertDataBeg(data)
+    elif choice==3:
+        data=int(input("Enter data:"))
+        d.insertDataEnd(data)
+    elif choice==4:
+        data=int(input("Enter data:"))
+        loc=int(input("Enter location:"))
+        d.insertDataSpecificationLocation(data,loc)
+    elif choice==5:
+        data=int(input("Enter data:"))
+        d.deleteData(data)
+    elif choice==6:
+        d.deleteDataBeg()
+    elif choice==7:
+        d.deleteDataEnd()
+    elif choice==8:
+        data=int(input("Search here:"))
+        d.searchData(data)
+        data=None
+    elif choice==9:
+        d.displayData()
+        print()
+    elif choice==10:
+        exit()
+        print()
+
