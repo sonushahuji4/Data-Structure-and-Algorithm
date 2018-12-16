@@ -82,6 +82,55 @@ class CircularLinkedList:
                 if fake:
                     print("match not found")
 
+    def deletedatabeg(self):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            cur = self.start
+            if self.start and self.start.next == self.start:
+                self.start = None
+            elif self.start and self.start.next != self.start:
+                cur = self.start
+                while cur:
+                    cur = cur.next
+                    if cur.next == self.start:
+                        self.start = self.start.next
+                        cur.next.next = None
+                        cur.next = self.start
+                        break
+
+    def deletedataend(self):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            cur=self.start
+            while cur:
+                prev=cur
+                cur=cur.next
+                if cur.next == self.start:
+                    prev.next=self.start
+                    cur.next=None
+                    break
+
+    def searchdata(self,key):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            loc=1
+            cur=self.start
+            if cur.next == self.start and cur.data == key:
+                print(cur.data, "was found at location", loc)
+
+            while cur.next != self.start and cur.data != key:
+                loc +=1
+                cur=cur.next
+            if cur.next == self.start and cur.data == key:
+                print(cur.data,"was found at location ",loc)
+            elif cur.next != self.start and cur.data == key:
+                print(cur.data, "was found at location", loc)
+            else:
+                pass
+
     def displaydata(self):
         if self.start is None:
             print("Database is Null")
@@ -102,6 +151,4 @@ c.insertdata(20)
 c.insertdata(9)
 c.displaydata()
 print()
-c.deletedata(100)
-c.displaydata()
-print()
+c.searchdata(6)
