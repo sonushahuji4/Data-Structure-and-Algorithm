@@ -156,6 +156,7 @@ class double_linklist:
             cur=cur.next
         if cur.next is None:
             print("Database Length is",count)
+            return count
 
     def copyData(self):
         if self.start is None:
@@ -183,6 +184,67 @@ class double_linklist:
                 temp=temp.next
 
 
+    def reverseData(self):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            tail=self.start
+            while tail.next is not None:
+                tail=tail.next
+            if tail.next is None:
+                cur=tail
+                while cur != self.start:
+                    print(cur.data,end=" ")
+                    cur=cur.prev
+                if cur == self.start:
+                    print(cur.data)
+    def sortData(self):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            c=d.countDataLength()
+            for i in range(c):
+                cur = self.start
+                for j in range((c-(i+1))):
+                    if cur.data>cur.next.data:
+                        val=cur.next.data
+                        cur.next.data=cur.data
+                        k=cur.next.data
+                        cur.data=val
+                        s=cur.data
+                        cur=cur.next
+                    else:
+                        cur=cur.next
+        cur = self.start
+        print()
+        while cur is not None:
+            print(cur.data, end=" ")
+            cur = cur.next
+        print()
+
+    def splitData(self,location):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            flag=0
+            cur=self.start
+            while cur is not None:
+                flag+=1
+                if flag==location:
+                    break
+                cur=cur.next
+            if location==flag:
+                list1=cur.next
+                list1.prev=None
+                cur.next=None
+            print("List 1")
+            d.displayData()
+            print("\nList 2")
+            l=list1
+            while l is not None:
+                print(l.data,end=" ")
+                l=l.next
+            print()
     def displayData(self):
         cur=self.start
         if self.start is None:
@@ -195,6 +257,7 @@ d=double_linklist()
 
 
 while True:
+    print("\n--------------- Doubly Linklist ---------------\n")
     print("1) Insert Data", end="           ")
     print("2) Insert Data at Beg")
     print("3) Insert Data at End", end="    ")
@@ -207,6 +270,9 @@ while True:
     print("10) Display Data")
     print("11) Exit")
     print("12) Copy Data")
+    print("13) Reverse Data")
+    print("14) Sort Data")
+    print("15) Split Data")
     choice=int(input(("\nEnter your choice:")))
 
     if choice==1:
@@ -246,5 +312,12 @@ while True:
         exit()
     elif choice==12:
         d.copyData()
-        print()
-
+    elif choice==13:
+        d.reverseData()
+    elif choice==14:
+        d.sortData()
+    elif choice==15:
+        loc=int(input("Where where u want to split data(enter location):"))
+        d.splitData(loc)
+    else:
+        print(".......... Invalid Choice ..........")
