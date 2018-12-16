@@ -148,6 +148,40 @@ class double_linklist:
                 print(cur.data, "was found at location", loc)
             else:
                 print(cur.data,"was found at location",loc)
+    def countDataLength(self):
+        cur=self.start
+        count=1
+        while cur.next:
+            count +=1
+            cur=cur.next
+        if cur.next is None:
+            print("Database Length is",count)
+
+    def copyData(self):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            cur=self.start
+            while cur is not None:
+                if cur.prev is None:
+                    new_node=Node(data)
+                    new_node.prev=None
+                    new_node.data=cur.data
+                    head=new_node
+                    temp=new_node
+                else:
+                    new_node=Node(data)
+                    new_node.prev = temp
+                    temp.next=new_node
+                    new_node.data=cur.data
+                    temp=temp.next
+                cur = cur.next
+
+            temp=head
+            while temp is not None:
+                print(temp.data,end=" ")
+                temp=temp.next
+
 
     def displayData(self):
         cur=self.start
@@ -169,8 +203,10 @@ while True:
     print("6) Delete Data at Beg")
     print("7) Delete Data at End", end="    ")
     print("8) Search Data")
-    print("9) Display Data",end="          ")
-    print("10) Exit")
+    print("9) Count",end="                 ")
+    print("10) Display Data")
+    print("11) Exit")
+    print("12) Copy Data")
     choice=int(input(("\nEnter your choice:")))
 
     if choice==1:
@@ -202,9 +238,13 @@ while True:
         d.searchData(data)
         data=None
     elif choice==9:
+        d.countDataLength()
+    elif choice==10:
         d.displayData()
         print()
-    elif choice==10:
+    elif choice==11:
         exit()
+    elif choice==12:
+        d.copyData()
         print()
 
