@@ -151,8 +151,29 @@ class DoubleCircularLinkedList:
                 cur=cur.next
             if cur.data == data:
                 print(cur.data,"was found at location",count)
+    def countdata(self):
+        if self.start is None:
+            print("database is Null")
+        else:
+            count=1
+            cur=self.start
+            while cur.next != self.start:
+                count+=1
+                cur=cur.next
+            print("Length of data is",count)
 
-
+    def reversedata(self):
+        if self.start is None:
+            print("Database is Null")
+        else:
+            cur=self.start
+            while cur.next != self.start:
+                cur=cur.next
+            if cur.next == self.start:
+                while cur != self.start:
+                    print(cur.data,end=" ")
+                    cur=cur.prev
+                print(cur.data, end=" ")
     def displaydata(self):
         if self.start is None:
             print("Database is Null")
@@ -162,7 +183,6 @@ class DoubleCircularLinkedList:
                 print(cur.data,end=" ")
                 cur = cur.next
                 if cur == self.start:
-                    #print(cur.data, end=" ")
                     break
 
 dc=DoubleCircularLinkedList()
@@ -174,5 +194,4 @@ dc.insertdata(73)
 dc.insertdata(7)
 dc.displaydata()
 print()
-dc.insertdataatspecificlocation(777777,1)
-dc.displaydata()
+dc.reversedata()
