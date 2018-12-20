@@ -20,6 +20,17 @@ class StackArray:
             print("Stack is Empty")
         else:
             print(data[::-1])
+    def get_binary_number(self):
+        data=int(input("Enter data:"))
+        d=data
+        li=[]
+        while data>0:
+            remainder=data % 2
+            li.append(remainder)
+            data=data//2
+        print("Binary Number",d,"is",end=" ")
+        for i in range(len(li)):
+            print(li.pop(),end="")
 s=StackArray()
 while True:
     print("\n-------------- Stack Using Array --------------\n")
@@ -28,7 +39,8 @@ while True:
     print("3)Peek")
     print("4)Display")
     print("5)Reverse")
-    print("6)Exit")
+    print("6)Binary Number")
+    print("7)Exit")
     choice=int(input("Enter your choice:"))
 
     if choice==1:
@@ -51,6 +63,8 @@ while True:
         data=s.get_stack()
         s.resverdata(data)
     elif choice==6:
+        s.get_binary_number()
+    elif choice==7:
         exit()
     else:
         print("Invalid Choice")
