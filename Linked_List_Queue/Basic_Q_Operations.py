@@ -53,7 +53,7 @@ class BasicQOperations:
 
 q=BasicQOperations()
 while True:
-    print("\n-------------- Stack Using Array --------------\n")
+    print("\n-------------- Linked List Queue --------------\n")
     print("1)Insert Data")
     print("2)Delete Data")
     print("3)Peek")
