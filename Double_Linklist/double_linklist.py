@@ -143,7 +143,7 @@ class double_linklist:
                 loc +=1
                 cur=cur.next
             if cur.next and cur.data == key:
-                print(cur.data,"was jjjjfound at location 1")
+                print(cur.data,"was found at location 1")
             elif cur.next is None and cur.data == key:
                 print(cur.data, "was found at location", loc)
             else:

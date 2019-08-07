@@ -2,7 +2,6 @@ class Node:
     def __init__(self,data):
         self.data=data
         self.next=None
-        self.size=0
 
 class Linklist:
     def __init__(self):

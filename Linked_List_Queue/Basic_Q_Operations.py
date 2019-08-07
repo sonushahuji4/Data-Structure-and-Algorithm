@@ -8,6 +8,7 @@ class BasicQOperations:
         self.front=None
         self.rear=None
         self.size=0
+
     def insertdata(self,data):
         if self.front is None and self.rear is None:
             new_node=Node(data)
@@ -52,6 +53,7 @@ class BasicQOperations:
                 print(temp.data, end=" ")
 
 q=BasicQOperations()
+
 while True:
     print("\n-------------- Linked List Queue --------------\n")
     print("1)Insert Data")

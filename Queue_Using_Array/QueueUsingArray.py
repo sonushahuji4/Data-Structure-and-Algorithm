@@ -4,6 +4,7 @@ class QueueUsingArray:
 
     def enqueue(self,data):
         return self.items.append(data)
+
     def dequeue(self):
         if q.is_empty():
             print("Queue is Empty")
