@@ -1,89 +1,33 @@
-# Program to perform depth first traversal in a graph
-from collections import defaultdict
+def sorting(data):
 
-class Graph:
-    def __init__(self, directed=False):
-        self.graph = defaultdict(list)
-        self.directed = directed
+    swap = True
+    while swap:
+        swap = False
+        for i in range(len(data)-1):
+            if data[i] > data[i+1]:
+                data[i],data[i+1] = data[i+1],data[i]
+                swap = True
 
-    def addEdge(self, frm, to):
-        self.graph[frm].append(to)
+    return data
 
-        if self.directed is False:
-            self.graph[to].append(frm)
-        else:
-            self.graph[to] = self.graph[to]
+data = [76,8,2,888,5,3,0]
+sorting(data)
+print(data)
 
-    def dfsUtil(self, s, visited):
-        stack = []
-        stack.append(s)
-        visited[s] = True
-
-        while stack:
-            vertex = stack.pop()
-            print(vertex, end=' ')
-
-            # traverse vertices adjacent to vertex
-            for i in self.graph[vertex]:
-                if not visited[i]:
-                    visited[i] = True
-                    stack.append(i)
-        print()
-
-    def dfs(self, s=None):
-        visited = {i: False for i in self.graph}
-
-        # traverse specified vertex
-        if s is not None:
-            self.dfsUtil(s, visited)
-
-        # traverse for all the vertices in other components of graph
-        for v in self.graph:
-            if not visited[v]:
-                self.dfsUtil(v, visited)
-
-
-if __name__ == '__main__':
-    # make an undirected graph
-    graph = Graph()
-
-    # component 1 of the graph
-    graph.addEdge(0, 1)
-    graph.addEdge(0, 2)
-    graph.addEdge(1, 2)
-    graph.addEdge(2, 3)
-    graph.addEdge(3, 3)
-    graph.addEdge(1, 4)
-    graph.addEdge(1, 5)
-    graph.addEdge(3, 6)
-
-    # component 2 of the graph
-    graph.addEdge(7, 8)
-    graph.addEdge(8, 9)
-    graph.addEdge(7, 10)
-
-    # call dfs from 2 vertex
-    print("Depth First Traversal:")
-    graph.dfs(2)
-
-# graph1 = {
-#     'A' : ['B','S'],
-#     'B' : ['A'],
-#     'C' : ['D','E','F','S'],
-#     'D' : ['C'],
-#     'E' : ['C','H'],
-#     'F' : ['C','G'],
-#     'G' : ['F','S'],
-#     'H' : ['E','G'],
-#     'S' : ['A','C','G']
-# }
-#
-# def dfs(graph, node, visited):
-#     if node not in visited:
-#         visited.append(node)
-#         for n in graph[node]:
-#             dfs(graph,n, visited)
+# def dfs(graph, start):
+#     visited, stack = set(), [start]
+#     while stack:
+#         vertex = stack.pop()
+#         if vertex not in visited:
+#             visited.add(vertex)
+#             stack.extend(graph[vertex] - visited)
 #     return visited
 #
-# visited = dfs(graph1,'A', [])
-# print(visited)
+# graph = {'A': set(['B', 'C']),
+#          'B': set(['A', 'D', 'E']),
+#          'C': set(['A', 'F']),
+#          'D': set(['B']),
+#          'E': set(['B', 'F']),
+#          'F': set(['C', 'E'])}
+#
+# dfs(graph, 'A') # {'E', 'D', 'F', 'A', 'C', 'B'}
