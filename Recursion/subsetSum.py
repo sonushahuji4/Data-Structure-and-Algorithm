@@ -3,18 +3,6 @@
 # Idea is to use Pick and Not Pick Technique
 
 # Approach One
-nums = [1,2,3]
-res = []
-def dfs(idx, path):
-    res.append(path.copy())
-    for i in range(idx, len(nums)):
-        path.append(nums[i])
-        dfs(i+1, path)
-        path.pop()
-dfs(0, [])
-return res
-
-# Approach Two
 arr = [2,3]
 n = len(arr)
 subsetSumArr = []
