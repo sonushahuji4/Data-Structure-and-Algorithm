@@ -2,6 +2,19 @@
 # For each subset sum it, and then store it in subset sum aaray
 # Idea is to use Pick and Not Pick Technique
 
+# Approach One
+nums = [1,2,3]
+res = []
+def dfs(idx, path):
+    res.append(path.copy())
+    for i in range(idx, len(nums)):
+        path.append(nums[i])
+        dfs(i+1, path)
+        path.pop()
+dfs(0, [])
+return res
+
+# Approach Two
 arr = [2,3]
 n = len(arr)
 subsetSumArr = []
@@ -17,7 +30,7 @@ subsetSum(0,0)
 subsetSumArr.sort()
 return subsetSumArr
 
-
+# Approach Three
 # To Find Total subset sum without creating an array
 
 arr = [2,3]
