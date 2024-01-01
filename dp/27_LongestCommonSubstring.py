@@ -18,6 +18,8 @@ class Solution:
                     dp[i][j] = 0
         return maxSubString
 
+
+# Link : https://www.codingninjas.com/studio/problems/longest-common-substring_1235207?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=SUBMISSION
 # Longest Common Substring on String
 
 def lcs(str1: str, str2: str) -> int:
