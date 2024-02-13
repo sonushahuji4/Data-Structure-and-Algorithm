@@ -24,4 +24,13 @@ class Trie:
       if temp.children[charIndex] == None: return False
       temp = temp.children[charIndex]
     return temp.isEndOfWord
+
+  def startsWithWord(self,word):
+    temp = self.root
+    for eachChar in word:
+      charIndex = ord(eachChar) - ord('a')
+      if temp.children[charIndex] == None: return False
+      temp = temp.children[charIndex]
+    return True
+                              
     
