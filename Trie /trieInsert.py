@@ -1,36 +1,36 @@
 class TrieNode:
-  def __init__(self):
-    self.children = [None]*26
-    self.isEndOfWord = False
-    
+    def __init__(self):
+        self.children = [None]*26
+        self.isEndOfWord = False
+
 class Trie:
-  def __init__(self):
-    self.root = TrieNode()
 
-  def insert(self,word):
-    temp = self.root
-    for eachChar in word:
-      charIndex = ord(eachChar) - ord('a')
-      if temp.children[charIndex] == None:
-        child = TrieNode()
-        temp.children[charIndex] = child
-      temp = temp.children[charIndex]
-    temp.isEndOfWord = True
+    def __init__(self):
+        self.root = TrieNode()
+        
+    def insert(self, word: str) -> None:
+        temp = self.root
+        for i in range(len(word)):
+            index = ord(word[i]) - ord('a')
+            if temp.children[index] == None:
+                child = TrieNode()
+                temp.children[index] = child
+            temp = temp.children[index]
+        temp.isEndOfWord = True
 
-  def search(self,word):
-    temp = self.root
-    for eachChar in word:
-      charIndex = ord(eachChar) - ord('a') 
-      if temp.children[charIndex] == None: return False
-      temp = temp.children[charIndex]
-    return temp.isEndOfWord
+    def search(self, word: str) -> bool:
+        temp = self.root
+        for i in range(len(word)):
+            index = ord(word[i]) - ord('a')
+            if temp.children[index] == None: return False
+            temp = temp.children[index]
+        return temp.isEndOfWord
+        
 
-  def startsWithWord(self,word):
-    temp = self.root
-    for eachChar in word:
-      charIndex = ord(eachChar) - ord('a')
-      if temp.children[charIndex] == None: return False
-      temp = temp.children[charIndex]
-    return True
-                              
-    
+    def startsWith(self, prefix: str) -> bool:
+        temp = self.root
+        for ch in prefix:
+            index = ord(ch) - ord('a')
+            if temp.children[index] == None: return False
+            temp = temp.children[index]
+        return True
