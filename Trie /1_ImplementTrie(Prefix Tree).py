@@ -1,3 +1,5 @@
+# Link : https://leetcode.com/problems/implement-trie-prefix-tree/description/
+
 class TrieNode:
     def __init__(self):
         self.children = [None]*26
