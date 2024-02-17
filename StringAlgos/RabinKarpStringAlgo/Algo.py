@@ -1,4 +1,5 @@
 # Link : https://cp-algorithms.com/index.html
+# Video Link : https://www.youtube.com/watch?v=qQ8vS2btsxI
 
 class RabinKarp:
     def __init__(self, pattern, text):
