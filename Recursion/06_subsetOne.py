@@ -1,6 +1,22 @@
 # Link : https://leetcode.com/problems/subsets/
 
-# Approach One
+# Approach One 1.0
+
+nums = [3,1,2]
+n = len(nums)
+ans = []
+def subsetAll(ind,arr,n):
+    if ind == n:
+        ans.append(arr.copy())
+        return
+    subsetAll(ind + 1, arr + [nums[ind]], n)
+    subsetAll(ind + 1, arr, n)
+
+subsetAll(0,[],n)
+print(ans)
+
+
+# Approach One 1.1
 
 allSubset = []
 def generateAllSubSet(nums,i,n,subset):
