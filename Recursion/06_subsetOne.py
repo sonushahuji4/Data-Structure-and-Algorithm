@@ -1,4 +1,23 @@
+# Given array, print sum all the subsets in it.
+# output should priting in increasing order.
+
+nums = [3,1,2]
+n = len(nums)
+ans = []
+def subsetAll(ind,total,n):
+    if ind == n:
+        ans.append(total)
+        return
+    subsetAll(ind + 1, total + nums[ind], n)
+    subsetAll(ind + 1, total, n)
+
+subsetAll(0,0,n)
+ans.sort()
+print(ans)
+    
+
 # Link : https://leetcode.com/problems/subsets/
+
 
 # Approach One 1.0
 
