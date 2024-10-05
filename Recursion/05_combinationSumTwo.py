@@ -1,3 +1,28 @@
+
+# Approach One
+
+nums = [1,1,1,2,2]
+n = len(nums)
+target = 4
+ans = []
+
+def uniqeCombinationSum(ind, target, arr, n):
+    if ind == n:
+        if target == 0:
+            ans.append(arr.copy())
+        return
+    if nums[ind] <= target:
+        uniqeCombinationSum(ind+1, target - nums[ind], arr + [nums[ind]], n)
+    uniqeCombinationSum(ind + 1, target, arr, n)
+
+uniqeCombinationSum(0,target,[],n)
+print(set(ans))
+    
+        
+        
+
+# Approach Two
+
 ans = []
 n = len(candidates)
   
