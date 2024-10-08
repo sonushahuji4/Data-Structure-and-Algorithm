@@ -49,14 +49,19 @@ print("Second Largest Element:", secondLargestElement)
 
 # Approach Third
 
-arr = [1,4,6,3,8,9,0,3]
-n = len(arr)
-largestElement = arr[0]
-secondLargestElement =  -1
-for i in range(1,n):
-    if arr[i] > largestElement:
-        secondLargestElement = largestElement
-        largestElement = arr[i]
-print(largestElement)
-print(secondLargestElement)
+numbers = [1, 4, 6, 3, 8, 9, 0, 3]
+totalNumbers = len(numbers)
+
+largestElement = numbers[0]
+secondLargestElement = -1
+
+for i in range(1, totalNumbers):
+    if numbers[i] > largestElement:
+        secondLargestElement = largestElement  # Update second largest before changing the largest
+        largestElement = numbers[i]
+    elif numbers[i] > secondLargestElement and numbers[i] != largestElement:
+        secondLargestElement = numbers[i]  # Update second largest if needed
+
+print("Largest Element:", largestElement)
+print("Second Largest Element:", secondLargestElement)
 
