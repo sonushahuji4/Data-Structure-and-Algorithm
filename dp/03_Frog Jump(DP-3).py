@@ -70,3 +70,37 @@ def frogJump(n, height):
 n = 5
 height = [10, 20, 30, 10, 40]
 print(frogJump(n, height))  # Output will be the minimum energy needed
+
+
+# Space optimization
+
+def frogJump(n, height):
+    # Base case: If there's only one stair, no energy is needed
+    if n == 1:
+        return 0
+    
+    # Initialize the previous two results
+    prev2 = 0  # dp[0], energy required to stay at the 0th stair
+    prev1 = abs(height[1] - height[0])  # dp[1], energy to reach the 1st stair
+    
+    # Iterate from the 2nd stair to the (n-1)th stair
+    for i in range(2, n):
+        # Calculate the minimum energy to reach the i-th stair
+        oneStep = prev1 + abs(height[i] - height[i-1])
+        twoStep = prev2 + abs(height[i] - height[i-2])
+        
+        # Current energy required to reach i-th stair
+        curr = min(oneStep, twoStep)
+        
+        # Update prev2 and prev1 for the next iteration
+        prev2 = prev1
+        prev1 = curr
+    
+    # Return the minimum energy required to reach the (n-1)th stair
+    return prev1
+
+# Example Usage:
+n = 5
+height = [10, 20, 30, 10, 40]
+print(frogJump(n, height))  # Output: Minimum energy needed to reach the last stair
+
