@@ -1,5 +1,6 @@
 # https://www.geeksforgeeks.org/problems/geeks-training/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=geeks-training
 
+# Recursion + DP
 class Solution:
     def maximumPoints(self, points, n):
         # Recursive function to calculate maximum points with memoization
@@ -32,11 +33,27 @@ class Solution:
         return maximum(n - 1, 3, points, dp)
 
 
-# Driver code starts
-if __name__ == '__main__':
-    t = int(input())
-    for _ in range(t):
-        n = int(input())  # Number of days
-        arr = [list(map(int, input().split())) for _ in range(n)]  # Points array
-        ob = Solution()
-        print(ob.maximumPoints(arr, n))
+# Tabulation
+
+def maximumPoints(self, points, n):
+    # dp array to store the maximum points up to each day for each activity
+    dp = [[0] * 3 for _ in range(n)]
+    
+    # Base case for day 0
+    dp[0][0] = points[0][0]  # Running on day 0
+    dp[0][1] = points[0][1]  # Fighting on day 0
+    dp[0][2] = points[0][2]  # Learning Practice on day 0
+    
+    # Fill the dp table iteratively for each day
+    for day in range(1, n):
+        # If Geek performs Running today, he can either come from Fighting or Learning Practice from the previous day
+        dp[day][0] = points[day][0] + max(dp[day - 1][1], dp[day - 1][2])
+        
+        # If Geek performs Fighting today, he can either come from Running or Learning Practice from the previous day
+        dp[day][1] = points[day][1] + max(dp[day - 1][0], dp[day - 1][2])
+        
+        # If Geek performs Learning Practice today, he can either come from Running or Fighting from the previous day
+        dp[day][2] = points[day][2] + max(dp[day - 1][0], dp[day - 1][1])
+    
+    # The result is the maximum points Geek can have on the last day with any of the three activities
+    return max(dp[n - 1][0], dp[n - 1][1], dp[n - 1][2])
