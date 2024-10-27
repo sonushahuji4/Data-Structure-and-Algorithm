@@ -34,3 +34,5 @@ class Solution:
                     numberOfComponents -= 1
                     disjjointSet.unionBySize(i,j)
         return numberOfComponents
+
+
