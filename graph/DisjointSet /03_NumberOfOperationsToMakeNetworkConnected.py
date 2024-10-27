@@ -1,32 +1,39 @@
 # Link : https://leetcode.com/problems/number-of-operations-to-make-network-connected/description/
 
 
+class DisjointSet:
+    def __init__(self, n):
+        self.parent = [i for i in range(n)]
+        self.size = [1]*n
+    
+    def find(self, node):
+        if self.parent[node] != node:
+            self.parent[node] = self.find(self.parent[node])
+        return self.parent[node]
+    
+    def unionBySize(self, u, v):
+        nodeU = self.find(u)
+        nodeV = self.find(v)
+
+        if nodeU == nodeV: return 
+
+        if self.size[nodeU] < self.size[nodeV]:
+            self.parent[nodeU] = nodeV
+            self.size[nodeV] += self.size[nodeU]
+        else:
+            self.parent[nodeV] = nodeU
+            self.size[nodeU] += self.size[nodeV]
+
 class Solution:
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
-        parent = [i for i in range(n)]
-        size = [1 for i in range(n)]
-        numberOfComponentsNotConnected = n
 
-        def find(u):
-            if parent[u] == u: return u
-            parent[u] = find(parent[u])
-            return parent[u]
-        
-        def union(u,v):
-            if size[u] > size[v]:
-                parent[v] = u
-                size[u] += size[v]
-            else:
-                parent[u] = v
-                size[v] += size[u]
-        
+        uf = DisjointSet(n)
+        numberOfComponentsNotConnected = n
         removeNumberOfCable = 0
-        for edge in connections:
-            u = find(edge[0])
-            v = find(edge[1])
-            if u != v:
+        for source, destination in connections:
+            if uf.find(source) != uf.find(destination):
                 numberOfComponentsNotConnected -= 1
-                union(u,v)
+                uf.unionBySize(source, destination)
             else:
                 removeNumberOfCable += 1
         
