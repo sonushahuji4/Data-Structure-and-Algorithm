@@ -16,8 +16,8 @@ class KahnsTopgSortAlgo:
         self.initializeQwithZeroDegree()
     
     def buildGraph(self):
-        for (source, destination) in self.arr:
-            graph[source].append(destination)
+        for (source, destination) in self.edges:
+            self.graph[source].append(destination)
     
     def calculateIndegrees(self):
         for node in range(self.n):
@@ -31,7 +31,7 @@ class KahnsTopgSortAlgo:
     
     def topoSort(self):
         topoSort = []
-        while not inDegreeQ.empty():
+        while not self.inDegreeQ.empty():
             node = self.inDegreeQ.get()
             topoSort.append(node)
             for neighbor in self.graph[node]:
@@ -39,7 +39,6 @@ class KahnsTopgSortAlgo:
                 if self.inDegree[neighbor] == 0:
                     self.inDegreeQ.put(neighbor)
         return topoSort
-
 
 
 # Template Two
