@@ -1,3 +1,4 @@
+# When a graph problem involves finding a shortest path, BFS should be used over DFS.
 def dfs(graph, node, visited):
     visited[node] = True
     print(node)  # Optional: Print or process the node
