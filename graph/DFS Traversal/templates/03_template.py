@@ -1,4 +1,3 @@
-from collections import defaultdict
 
 class DFS:
     def __init__(self, n):
