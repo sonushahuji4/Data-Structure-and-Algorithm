@@ -1,3 +1,4 @@
+# Detects cycles in an undirected graph by checking if a visited node is revisited without being its direct parent.
 
 class DFS:
     def __init__(self, n):
