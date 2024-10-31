@@ -1,9 +1,9 @@
 # https://leetcode.com/problems/keys-and-rooms/description/
 
-from collections import defaultdict
+from collections import defaultdict, deque
 
 class DFS:
-    def __init__(self, n):
+    def __init__(self, n: int):
         self.visited = [False]*n
     
     def dfs(self, node: int, graph: List[List[int]]) -> List[int]:
@@ -12,6 +12,24 @@ class DFS:
         for neighbour in graph[node]:
             if not self.visited[neighbour]:
                 self.dfs(neighbour, graph)
+
+        return self.visited
+
+class BFS:
+    def __init__(self, n: int):
+        self.visited = [False]*n
+
+    def bfs(self, node: int, graph: List[List[int]]) -> List[int]:
+        self.visited[node] = True
+        queue = deque()
+        queue.append(node)
+
+        while queue:
+            currentNode = queue.popleft()
+            for neighbour in graph[currentNode]:
+                if not self.visited[neighbour]:
+                    self.visited[neighbour] = True
+                    queue.append(neighbour)
 
         return self.visited
 
@@ -27,8 +45,20 @@ class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
         roomsLength = len(rooms)
         graph = self.buildGraph(roomsLength, rooms)
-        dfsInstance = DFS(roomsLength)
-        visited = dfsInstance.dfs(0, graph)
+
+        # Approach One
+        # dfsInstance = DFS(roomsLength)
+        # visited = dfsInstance.dfs(0, graph)
+        # for isVisited in visited:
+        #     if not isVisited: return False
+        # return True
+
+        # Approach Two
+
+        bfsInstance = BFS(roomsLength)
+        visited = bfsInstance.bfs(0, graph)
         for isVisited in visited:
             if not isVisited: return False
         return True
+       
+        
