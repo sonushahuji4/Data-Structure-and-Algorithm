@@ -16,12 +16,13 @@
 class DFS:
     def __init__(self, n):
         self.visited = [False] * n
+        self.n = n
     
-    def dfs(self, node, graph):
-        self.visited[node] = True
-        for neighbor in graph[node]:
-            if not self.visited[neighbor]:
-                self.dfs(neighbor, graph)
+    def dfs(self, node: int, graph: List[List[int]]):
+        self.visited[node] = True  # Mark as visited
+        for neighbour in range(self.n):  # Iterate neighbors
+            if not self.visited[neighbour] and graph[node][neighbour]:  # Corrected check
+                self.dfs(neighbour, graph)  # Recursive call
 
 class Solution:
     def countComponents(self, n, edges):
