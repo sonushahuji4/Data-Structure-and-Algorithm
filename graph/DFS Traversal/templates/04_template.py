@@ -1,7 +1,7 @@
 # DFS for Path Finding (Backtracking)
 # Used to find all paths from a starting node to a target node in a graph, storing paths as they are discovered.
 
-# 1. Variation
+# 1. Variation One
 
 class DFS:
     def __init__(self, n):
@@ -21,7 +21,7 @@ class DFS:
         path.pop()  # Remove node from path on backtracking
       
 
-# 2. Variation
+# 2. Variation Two
 
 class DFS:
     def __init__(self, n):
@@ -36,4 +36,26 @@ class DFS:
                 if self.dfs(neighbour, destination, graph):
                     return True
         return False
+
+
+# 3. Variation Three
+
+class DFS:
+    def __init__(self,n):
+        self.visited = [False] * n
+        self.n = n
+        self.paths = []
+    
+    def dfs(self, node, destination, graph, path):
+        if node == destination:
+            self.paths.append(path)
+            return
+            
+        self.visited[node] = True
+       
+        for neighbour in graph[node]:
+            if not self.visited[neighbour]:
+                self.dfs(neighbour, destination, graph, path + [neighbour])
+                
+        self.visited[node] = False
      
