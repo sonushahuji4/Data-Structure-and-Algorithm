@@ -17,6 +17,16 @@ class DFS:
 
         return hasApple[node] or isSubTreeHasApple
 
+    def dfs2(self,node: int, parent: int, graph: List[List[int]], hasApple: List[bool]) -> int:
+        totalTime = childTime = 0
+        for neighbour in graph[node]:
+            if neighbour == parent: continue
+            childTime = self.dfs2(neighbour, node, graph, hasApple)
+            if childTime or hasApple[neighbour]:
+                totalTime += childTime + 2
+        return totalTime
+
+
 class Solution:
 
     def buildGraph(self, n: int, edges: List[List[int]]) -> List[List[int]]:
