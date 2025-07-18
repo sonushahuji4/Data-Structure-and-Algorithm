@@ -261,3 +261,15 @@ Each arrow is placed at the current overlapping range’s end.
 Example: For [[10,16],[2,8],[1,6],[7,12]],
 After sorting → merge [1,6],[2,8] and [7,12],[10,16]
 → Need only 2 arrows at x=6 and x=12.
+
+30. 57. Insert Interval
+Scan and add intervals in 3 parts:
+Before Overlap: Add all intervals ending before newInterval starts.
+Merging: Merge all overlapping intervals into one using min(start), max(end).
+After Overlap: Add remaining intervals as-is.
+✅ Time: O(n)
+✅ Space: O(n) (for output)
+Example:
+[[1,2],[3,5],[6,7],[8,10],[12,16]], new = [4,8]
+→ merge [3,5],[6,7],[8,10] into [3,10]
+→ result: [[1,2],[3,10],[12,16]]
