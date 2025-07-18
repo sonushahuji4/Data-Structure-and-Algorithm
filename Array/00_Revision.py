@@ -249,3 +249,15 @@ Sorting + prefix + binary search per query
 nums = [4, 5, 2, 1], queries = [3, 10, 21]
 → Sorted: [1, 2, 4, 5], prefix: [1, 3, 7, 12]
 → Output: [2, 3, 4] (2 elements ≤ 3, 3 elements ≤ 10, all 4 ≤ 21)
+
+29. 452. Minimum Number of Arrows to Burst Balloons
+Sort intervals by start or end, then greedily merge overlapping intervals.
+Track the intersection of overlapping balloons and fire one arrow per non-overlapping group.
+Each arrow is placed at the current overlapping range’s end.
+
+✅ Time: O(n log n) (due to sorting)
+✅ Space: O(1)
+
+Example: For [[10,16],[2,8],[1,6],[7,12]],
+After sorting → merge [1,6],[2,8] and [7,12],[10,16]
+→ Need only 2 arrows at x=6 and x=12.
