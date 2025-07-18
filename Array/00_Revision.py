@@ -194,3 +194,58 @@ Space: O(n) for output.
 Example:
 grid = \[\[1,1,1,-1,-1],\[1,1,1,-1,-1],\[-1,-1,-1,1,1],\[1,1,1,1,-1],\[-1,-1,-1,-1,-1]]
 → Output: \[1, -1, -1, -1, -1].
+
+26. Valid Sudoku
+
+Check Row, Column, and Box Uniqueness
+Use three data structures to track digits:
+One for each row.
+One for each column.
+One for each 3×3 sub-box (index: (r // 3) * 3 + (c // 3)).
+
+Approach:
+Iterate each cell.
+Ignore empty cells (".").
+Check if the current digit is already in the row, column, or box → return False if so.
+Otherwise, add digit to row, column, and box.
+Two options for implementation:
+Set-based (simple and clear).
+Bitmask-based (optimized for space & faster checks).
+Time: O(1) since board size is fixed (9×9).
+Space: O(1).
+
+27. Prefix Sum & Reverse Sum Tracking
+Approach 1: Prefix + Suffix sums (explicit suffix tracking)
+Build a prefix sum array.
+For each index i, calculate:
+Prefix sum up to i ⇒ average of first i + 1 elements.
+Suffix sum from i + 1 onward ⇒ average of remaining elements (or 0 if none).
+Track the index with the smallest absolute difference between these two averages.
+Time: O(n)
+Space: O(n) (for prefix array)
+
+Approach 2: Prefix sum + total sum (optimized space)
+Compute total sum first.
+As you iterate left to right, maintain running prefix sum.
+At each index i:
+Left average = prefix sum // (i + 1).
+Right average = (total sum - prefix sum) // (n - i - 1), or 0 if no elements remain.
+Update min difference and track the index.
+Time: O(n)
+Space: O(1)
+
+28. 2389. Longest Subsequence With Limited Sum 
+(Greedy + Prefix Sum + Binary Search)
+To find the longest subsequence with sum ≤ each query:
+Sort nums to pick smallest elements first (maximize count under budget).
+Build a prefix sum array, where prefix[i] = sum of first i+1 smallest elements.
+For each query, use binary search to find how many elements fit (i.e., largest i where prefix[i] ≤ query).
+This avoids checking all combinations and leverages sorted greediness.
+🕒 Time:
+O(n log n + m log n) → n = nums.length, m = queries.length
+Sorting + prefix + binary search per query
+🧠 Space: O(n) for prefix array and O(m) for output
+📌 Example:
+nums = [4, 5, 2, 1], queries = [3, 10, 21]
+→ Sorted: [1, 2, 4, 5], prefix: [1, 3, 7, 12]
+→ Output: [2, 3, 4] (2 elements ≤ 3, 3 elements ≤ 10, all 4 ≤ 21)
