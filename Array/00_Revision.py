@@ -273,3 +273,38 @@ Example:
 [[1,2],[3,5],[6,7],[8,10],[12,16]], new = [4,8]
 → merge [3,5],[6,7],[8,10] into [3,10]
 → result: [[1,2],[3,10],[12,16]]
+
+31. Maximum Sum Circular Subarray
+The problem asks for the maximum sum of a non-empty subarray in a circular array, meaning subarrays can wrap from the end to the start. 
+The key idea is to consider two cases: (1) a regular maximum subarray using Kadane’s algorithm, and (2) a circular subarray, computed by subtracting the minimum subarray sum from the total sum. 
+The answer is the max of the two, unless all numbers are negative—in which case the wraparound case is invalid, and we return the regular max. 
+This teaches how to cleverly repurpose minimum subarray logic for circular cases. Time complexity is O(n) and space complexity is O(1).
+
+32. 974. Subarray Sums Divisible by K
+
+Count subarrays whose sum is divisible by k using prefix sums and modulo.
+
+Key Takeaway:
+Use (prefixSum % k) and hash map to track frequencies. If two prefix sums have the same mod, the subarray between them is divisible by k.
+
+Time: O(n)
+Space: O(k)
+
+33. 997. Find the Town Judge
+
+Find the town judge: the person who trusts no one and is trusted by everyone else (n - 1 people).
+
+Key Takeaway:
+Use an array to track trust balance: decrement for trusting someone, increment for being trusted. The judge will have a score of n - 1.
+
+Time: O(n + t) (where t is the length of trust)
+Space: O(n)
+
+34. In the Snakes and Ladders problem, you're given an n x n game board where cell numbers are arranged in a zigzag (Boustrophedon) pattern starting from the bottom-left. You begin at cell 1 and roll a standard 6-sided die each turn, moving up to 6 steps forward. If the cell you land on contains a snake or ladder (i.e., board[r][c] != -1), you must jump to that destination. The goal is to determine the minimum number of moves needed to reach the last cell (n^2), or return -1 if unreachable.
+
+Key Takeaway:
+Model this as a shortest path problem on a 1D graph of n^2 nodes. Use Breadth-First Search (BFS) to simulate dice rolls and jumps via snakes/ladders. A helper function is crucial to convert square numbers into (row, col) coordinates due to the board’s zigzag layout.
+
+Time Complexity: O(n^2)
+Space Complexity: O(n^2)
+(Because we may visit each cell once, and we use a queue and visited matrix of size n^2)
